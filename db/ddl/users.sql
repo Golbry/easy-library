@@ -1,7 +1,7 @@
 CREATE TABLE `user_info`
 (
     `id`                   bigint unsigned    NOT NULL AUTO_INCREMENT COMMENT '自增ID',
-    `user_name`            varchar(256)       NOT NULL DEFAULT '' COMMENT '小程序appid',
+    `user_name`            varchar(256)       NOT NULL DEFAULT '' COMMENT '用户名称',
     `password`             varchar(256)       NOT NULL DEFAULT '' COMMENT '用户密码',
     `status`               tinyint            NOT NULL DEFAULT 0 COMMENT '当前状态,0-有效，1-已删除',
     `level`                tinyint            NOT NULL DEFAULT 0 COMMENT '用户等级，0-普通用户，1-管理员，2-超级管理员',
