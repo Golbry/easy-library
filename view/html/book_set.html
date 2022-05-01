@@ -28,16 +28,16 @@
     <div>
       <ul style="display: block;">
         <li>
-            <button target="right" class="" id="Backstage" onclick="window.location.href='http://127.0.0.1:8080/Backstage'">
+            <button target="right" class="button" id="Backstage" onclick="window.location.href='http://127.0.0.1:8082/back_stage'">
                 <span class="icon-caret-right"></span>主页</button>
         </li>
         <li>
-            <button target="right" class="" id="bookSet" onclick="window.location.href='http://127.0.0.1:8080/bookSet'">
+            <button target="right" class="button" id="bookSet" onclick="window.location.href='http://127.0.0.1:8082/book_set'">
                 <span class="icon-caret-right"></span>书籍修改</button>
 
         </li>
         <li>
-            <button target="right" class="" id="addBook" onclick="window.location.href='http://127.0.0.1:8080/addBooks'">
+            <button target="right" class="button" id="addBook" onclick="window.location.href='http://127.0.0.1:8082/add_books'">
                 <span class="icon-caret-right"></span>添加书籍</button>
         </li>
     </ul>
@@ -104,14 +104,14 @@
     console.log(id,bookTime) //测试是否接收前端输入的值
     $.ajax({ //通过ajax触发  post请求
       method: "post",
-      url:"http://localhost:8080/wyb/changeTime",
+      url:"http://127.0.0.1:8082/easy_library/change_time",
       data:{
         id:id,
         bookTime:bookTime
       },
       success:function (data){
         if(data.data ==1){
-          window.location.href='http://127.0.0.1:8080/Backstage'
+          window.location.href='http://127.0.0.1:8080/back_stage'
         }else{
           console.log("修改失败")
         }

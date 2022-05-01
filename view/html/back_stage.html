@@ -8,7 +8,7 @@
     <script type="text/javascript" src="static/js/jquery.js"></script>
     <link rel="stylesheet" href="static/css/index.css" />
     <link rel="stylesheet" href="static/css/picture.css" />
-    <title>欢迎来到图书馆管理系统</title>
+    <title>欢迎来到DUT图书馆管理系统</title>
 </head>
 
 <body>
@@ -22,24 +22,20 @@
     <div class="leftnav">
         <h2 class="on"><span class="icon-pencil-square-o"></span>书籍管理</h2>
         <div>
-            <ul style="display: block;">
-                <li>
-                    <!--          实现页面跳转  主页-->
-                    <button target="right" class="" id="Backstage" onclick="window.location.href='http://127.0.0.1:8080/Backstage'">
-                        <span class="icon-caret-right"></span>主页</button>
-                </li>
-                <li>
-                    <!--          实现页面跳转  修改书籍信息-->
-                    <button target="right" class="" id="bookSet" onclick="window.location.href='http://127.0.0.1:8080/bookSet'">
-                        <span class="icon-caret-right"></span>书籍修改</button>
-
-                </li>
-                <li>
-                    <!--          实现页面跳转  添加书籍-->
-                    <button target="right" class="" id="addBook" onclick="window.location.href='http://127.0.0.1:8080/addBooks'">
-                        <span class="icon-caret-right"></span>添加书籍</button>
-                </li>
-            </ul>
+            <!--实现页面跳转  主页-->
+            <button target="right" class="button" id="Backstage" onclick="window.location.href='http://127.0.0.1:8082/back_stage'">
+                <span class="icon-caret-right"></span>主页</button>
+        </div>
+            <!--实现页面跳转  修改书籍信息-->
+        <div>
+            <button target="right" class="button" id="bookSet" onclick="window.location.href='http://127.0.0.1:8082/book_set'">
+                <span class="icon-caret-right"></span>书籍修改</button>
+        </div>
+            <!--          实现页面跳转  添加书籍-->
+        <div>
+            <button target="right" class="button" id="addBook" onclick="window.location.href='http://127.0.0.1:8082/add_books'">
+                <span class="icon-caret-right"></span>添加书籍</button>
+        </div>
         </div>
     </div>
         <div class="panel admin-panel" style=" position: absolute;top: 111px;right: 40px;">
@@ -49,7 +45,7 @@
                 <ul class="search" style="padding-left:10px;">
                     <li>搜索：</li>
                     <li>
-                        <!--    通过bookid id 获取val() -->
+                        <!--通过bookid id 获取val() -->
                         <input type="text" placeholder="请输入书籍id" id="bookid" class="input" style="width:150px; line-height:17px;display:inline-block">
                         <!--   通过onclick点击事件 触发函数queryBook()            -->
                         <a href="javascript:void(0)" class="button border-main icon-search" id="btn_queryGoodsInfo" onclick="queryBook()">查询</a>
@@ -63,8 +59,9 @@
                     <tr>
                         <th width="100" style="text-align:left; padding-left:20px;">书籍ID</th>
                         <th width="10%">书籍名称</th>
-                        <th>书籍入馆时间</th>
-                        <th style="position: absolute;left: 720px; ">操作</th>
+                        <th width="10%">作者</th>
+                        <th width="50%">书籍入馆时间</th>
+                        <th style="text-align:right; padding-right: 40px">操作</th>
                     </tr>
                     <div id="datad">
 
@@ -80,15 +77,24 @@
         </div>
     </div>
 <script>
+    let level=0
+    level=sessionStorage.getItem("user_level") //从session中获取当前用户等级
     showdata()
     //动态展示
     function showdata(){
+        if (level<1){
+            alert(1)
+            document.getElementById("bookSet").style.display="none";
+        }
+        if (level<2){
+            document.getElementById("addBook").style.display="none";
+        }
         $.ajax({  //通过ajax触发post请求
             method:"post",
-            url:"http://localhost:8080/wyb/showdata",  //post请求路径
+            url:"http://localhost:8082/easy_library/show_data",  //post请求路径
             success:function (data){
                 console.log("数据",data);
-                let cc=[];   // 定义一个cc数组   展示动态页面效果
+                let cc=[];   // 定义一个cc数组展示动态页面效果
                 for (let i of data.data){   //定义一个for循环 分别存入三条书籍信息
                     yy=`
                       <tr>
@@ -101,13 +107,12 @@
                            <td width="10%" style="position: relative;left: -65px">${i.CreatTime}</td>
                            <td style="position: relative;left: 250px">
 <!--                           跳转到修改页面-->
-                               <button style="color: aquamarine;" onclick="window.location.href='http://127.0.0.1:8080/bookSet'">修改</button>
+                               <button style="color: aquamarine;" onclick="window.location.href='http://127.0.0.1:8082/book_set'">修改</button>
                                <button style="color:brown" onclick="delect(this)">删除</button>
                            </td>
                            </tr>
                     `
                     cc.push(yy)  //将tr的所有数据存放在cc数组当中
-
                 }
                 console.log(cc)
                 var c =""
@@ -124,7 +129,7 @@
         console.log(id)
        $.ajax({
            method:"post",//post请求
-           url:"http://localhost:8080/wyb/query", //post请求路径
+           url:"http://localhost:8082/easy_library/query", //post请求路径
            data: {id:id},
            success:function (data){
                console.log("数据",data);
@@ -140,7 +145,7 @@
                            </td>
                            <td width="10%" style="position: relative;left: -65px">${i.CreatTime}</td>
                            <td style="position: relative;left: 250px">
-                               <button style="color: aquamarine;" onclick="window.location.href='http://127.0.0.1:8080/bookSet'">修改</button>
+                               <button style="color: aquamarine;" onclick="window.location.href='http://127.0.0.1:8082/book_set'">修改</button>
                                <button style="color:brown" onclick="delect(this)">删除</button>
                            </td>
                            </tr>
@@ -176,5 +181,4 @@
     }
 </script>
 </body>
-
 </html>
