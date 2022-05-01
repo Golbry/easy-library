@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"easy-library/common"
 	"easy-library/db"
 	"github.com/gin-gonic/gin"
 	"strconv"
@@ -13,5 +14,5 @@ func changeBooktime(c *gin.Context) {
 	}
 	booktime := c.PostForm("bookTime")    //将前端传入的数据赋值给booktime
 	re := db.ChangeBookTime(id, booktime) //将id ,booktime 传给ChangBookTime()方法
-	toHtml(c, re)                         //返回给html
+	toHtml(c, common.ErrSuccess, re, nil) //返回给html
 }

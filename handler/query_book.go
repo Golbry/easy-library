@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"easy-library/common"
 	"easy-library/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -15,5 +16,5 @@ func Querybook(c *gin.Context) {
 	} //处理错误机制
 	results := db.Querybooks(id) //将id  传给Querybooks()方法
 	fmt.Println(results)
-	toHtml(c, results) //将results返回给html
+	toHtml(c, common.ErrSuccess, results, nil) //将results返回给html
 }

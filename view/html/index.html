@@ -1,5 +1,5 @@
 <html><head>
-    <title>欢迎来到图书馆</title>
+    <title>欢迎来到DUT图书馆</title>
     <!-- metatags-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -14,13 +14,11 @@
 </head>
 <body>
 <div class="w3l-head">
-    <h1>欢迎来到图书馆 </h1>
+    <h1>欢迎来到DUT图书馆 </h1>
 </div>
 <div class="w3l-main">
     <div class="w3l-left-side">
-
         <div class="flexslider">
-
             <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1400%; transition-duration: 0.6s; transform: translate3d(-920px, 0px, 0px);"><li class="clone" style="width: 460px; float: left; display: block;">
                 <img src="../static/image/g1.jpg" alt="image">
             </li>
@@ -68,8 +66,8 @@
             </div>
                 <div class="w3-user">
                     <span><i class="fa fa-user-o" aria-hidden="true"></i></span>
-<!--    通过id  Username获取用户名-->
-                    <input type="text" name="Username" placeholder="用户名" required="" id="Username">
+                    <!--    通过id  Username获取用户名-->
+                    <input type="text" name="Username" style="text-transform:none;" placeholder="用户名" required="" id="Username">
                 </div>
                 <div class="clear"></div>
                 <div class="w3-psw">
@@ -79,7 +77,7 @@
                 </div>
                 <div class="clear"></div>
                 <div class="signin">
-<!--     通过onclick点击事件 触发checkuser()函数-->
+                <!--     通过onclick点击事件 触发checkuser()函数-->
                     <input type="submit" value="登入" onclick="checkuser()">
                 </div>
                 <div class="clear"></div>
@@ -97,7 +95,7 @@
                 <div class="w3-user">
                     <span><i class="fa fa-user-o" aria-hidden="true"></i></span>
                     <!--    通过id  Username获取用户名-->
-                    <input type="text" name="Username" placeholder="用户名" required=""  id="userNameTwo">
+                    <input type="text" name="Username" style="text-transform:none;" placeholder="用户名" required=""  id="userNameTwo">
                 </div>
                 <div class="clear"></div>
                 <div class="w3-psw">
@@ -145,14 +143,15 @@
          console.log(password ,username)//测试是否得到这些值
           $.ajax({//通过ajax触发post请求
               method:"post",
-              url:"http://localhost:8080/wyb/login",//post请求路径
-              data:{username:username,password:password}, //对应相对数据
+              url:"http://localhost:8082/easy_library/login",//post请求路径
+              data:{user_name:username,password:password}, //对应相对数据
               success:function (data){
-                  console.log(data.data)
-                  if (data.data==0){
+                  console.log(data)
+                  if (data.data===0){
                       alert("密码错误")
                   }else {
-                      window.location.href="http://localhost:8080/Backstage" //登入成功就切换到主页面
+                      alert("成功登陆")
+                      window.location.href="http://localhost:8082/back_stage" //登入成功就切换到主页面
                   }
               },
               error:function (data){
@@ -162,18 +161,18 @@
      }
      //注册
      function userRegister(){
-       var username = $("#userNameTwo").val() //得到前端输入的账户
-       var userpassword = $("#userPassWordTwo").val() //得到前端输入的密码
-         console.log(username,userpassword)//测试是否得到这些值
-
+       let username = $("#userNameTwo").val() //得到前端输入的账户
+       let password = $("#userPassWordTwo").val() //得到前端输入的密码
+         console.log(username,password)//测试是否得到这些值
          $.ajax({ //通过ajax触发post请求
              method: "post",
-             url: "http://localhost:8080/wyb/register", //post请求路径
-             data:{username:username,userpassword: userpassword},  //数据对应 存放
+             url: "http://localhost:8082/easy_library/register", //post请求路径
+             data:{user_name:username,password: password},  //数据对应 存放
              success:function (data){
-                 if (data.data=1){
-
-                 alert("注册成功")
+                 if (data.data===1){
+                    alert("注册成功")
+                 }else{
+                     alert(data.error.message)
                  }
              }
          })

@@ -93,7 +93,7 @@
              console.log(bookname,goodShelfStatus);  //测试是否得到以上那些值
          $.ajax({                                    //通过ajax触发post请求
              method:"post",
-             url:"http://localhost:8080/wyb/addbook", //post请求路径
+             url:"http://localhost:8082/wyb/addbook", //post请求路径
              data:{
                  bookname:bookname,                     //数据存放
                  goodShelfStatus:goodShelfStatus

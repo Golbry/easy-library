@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"easy-library/common"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -15,46 +16,47 @@ func Run() {
 	engine.GET("/index", func(c *gin.Context) {
 		//根据文件名渲染
 		//加载模板是加载的路径，替换的是文件中的某个变量
-		c.HTML(200, "index.html", gin.H{"title": "标题"})
+		c.HTML(200, "index.html", gin.H{"title": "标签页"})
 	}) //触发get请求 加载html文件
 	//书籍主页
-	engine.GET("/Backstage", func(c *gin.Context) {
+	engine.GET("/back_stage", func(c *gin.Context) {
 		//根据文件名渲染
 		//加载模板是加载的路径，替换的是文件中的某个变量
-		c.HTML(200, "back_stage.html", gin.H{"title": "标题"})
+		c.HTML(200, "back_stage.html", gin.H{"title": "书籍查询"})
 	}) //触发get请求 加载html文件
 	//书籍编辑
-	engine.GET("/bookSet", func(c *gin.Context) {
+	engine.GET("/book_set", func(c *gin.Context) {
 		//根据文件名渲染
 		//加载模板是加载的路径，替换的是文件中的某个变量
 		c.HTML(
-			200, "book_set.html", gin.H{"title": "标题"})
+			200, "book_set.html", gin.H{"title": "书籍管理"})
 	}) //触发get请求 加载html文件
 	//添加书籍页面
-	engine.GET("/addBooks", func(c *gin.Context) {
+	engine.GET("/add_books", func(c *gin.Context) {
 		//根据文件名渲染
 		//加载模板是加载的路径，替换的是文件中的某个变量
-		c.HTML(200, "add_books.html", gin.H{"title": "标题"})
+		c.HTML(200, "add_books.html", gin.H{"title": "添加图书"})
 	}) //触发get请求 加载html文件
-	wyb := engine.Group("wyb") //创建 请求组
+	easy_library := engine.Group("easy_library") //创建 请求组
 	{
-		wyb.POST("/login", Login)               //POST>>>>登入
-		wyb.POST("/register", Register)         //POST>>>>注册
-		wyb.POST("/showdata", Showdata)         //POST>>>>动态展示
-		wyb.POST("/addbook", Addbook)           //POST>>>>添加书籍
-		wyb.POST("/delect", Delect)             //POST>>>>删除书籍
-		wyb.POST("/query", Querybook)           //POST>>>>查询
-		wyb.POST("/changeName", changeBookname) //POST>>>>修改书籍名称
-		wyb.POST("/changeTime", changeBooktime) //POST>>>>修改书籍时间
+		easy_library.POST("/login", Login)                //POST>>>>登入
+		easy_library.POST("/register", Register)          //POST>>>>注册
+		easy_library.POST("/show_data", Showdata)         //POST>>>>动态展示
+		easy_library.POST("/add_book", Addbook)           //POST>>>>添加书籍
+		easy_library.POST("/delete", Delect)              //POST>>>>删除书籍
+		easy_library.POST("/query", Querybook)            //POST>>>>查询
+		easy_library.POST("/change_name", changeBookname) //POST>>>>修改书籍名称
+		easy_library.POST("/change_time", changeBooktime) //POST>>>>修改书籍时间
 	}
-	err := engine.Run("127.0.0.1:3000") //启动端口127.0.0.1:8080
+	err := engine.Run("127.0.0.1:8082") //启动端口127.0.0.1:8080
 	if err != nil {
 		return
 	} //处理错误机制
 }
-func toHtml(c *gin.Context, data interface{}) { //渲染html 返回
+func toHtml(c *gin.Context, cusErr *common.CusError, data interface{}, exception interface{}) { //渲染html 返回
 	c.JSON(200, gin.H{
-		"code": 0,
-		"data": data,
+		"error":     cusErr,
+		"data":      data,
+		"exception": exception,
 	})
 }

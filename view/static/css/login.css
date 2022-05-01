@@ -41,7 +41,7 @@ a{text-decoration:none;}
 .share_div li{margin:0 3px}
 .share_div .icon-wechata{background-position:0 -1612px}
 .local{width:1170px;margin:0 auto}
-input{outline:none}
+input{outline:none;text-transform:none;}
 .admin{color:#0C0E0B}
 /*楂樺害 58PX*/
 .header,.header .head-fixed{height:58px}
@@ -217,7 +217,7 @@ iframe,.demo-header .navbar li a.ma .erl,.preview-phone,.preview-phone2,.preview
 .header .nav-men ul li div{position: relative;top:6px;}
 .wb-login{background-color:red;}
 .login-bot .qq-login:hover,.login-bot .wb-login:hover,.login-window .login-go:hover,.login-window .register-go:hover,.com-page-next:hover,.release:hover,.rt-men .back-top:hover,.footer-men .fo-men-gd:hover,.flexslider form button:hover,.reward .reward-a:hover,.so-ar i:hover,.search-btn:hover,.btn:hover,.user-all .header .so-login-men .login-button:hover
-{opacity: .8;FILTER: alpha(opacity=80);}
+{opacity: .8;}
 
 .mask2{background: rgba(0,0,0,0.3);opacity:0}
 

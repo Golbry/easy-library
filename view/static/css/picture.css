@@ -739,7 +739,7 @@ hr.space{background:#fff;color:#fff;visibility:hidden;}
 ul{padding-left:20px;}
 ol{padding-left:24px;}
 .list-cn{list-style-type:cjk-ideographic;}
-.list-alpha{list-style-type:upper-alpha;}
+/*.list-alpha{list-style-type:upper-alpha;}*/
 .list-unstyle{list-style:none;padding-left:0;}
 .list-unstyle ul{list-style:disc;}
 .list-inline li{display:inline-block;padding:0 10px;width:auto;}

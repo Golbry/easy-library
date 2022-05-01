@@ -1,6 +1,7 @@
 package handler
 
 import (
+	"easy-library/common"
 	"easy-library/db"
 	"fmt"
 	"github.com/gin-gonic/gin"
@@ -13,6 +14,6 @@ func Delect(c *gin.Context) {
 	if err != nil {
 		panic(err) //处理错误机制
 	}
-	result := db.Delect(id) //将id 传给Delect()方法
-	toHtml(c, result)       //返回html
+	result := db.Delect(id)                   //将id 传给Delect()方法
+	toHtml(c, common.ErrSuccess, result, nil) //返回html
 }

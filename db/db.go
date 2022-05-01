@@ -1,93 +1,9 @@
 package db
 
 import (
-	"database/sql"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	_ "github.com/go-sql-driver/mysql"
 )
-
-var DB *sql.DB
-
-type User struct { //定义用户结构体
-	id       int    //id
-	name     string //用户名     与数据库变量名一致
-	password string //密码
-}
-
-//数据库连接
-func MustInit() {
-	var err error
-	//"用户名:密码@[连接方式](主机名:端口号)/数据库名"
-	DB, err = sql.Open("mysql", "easy_library:McFc2jLb6Am8PkYz@tcp(81.70.240.235:3306)/easy_library?charset=utf8") // 设置连接数据库的参数
-	if err != nil {
-		panic(err)
-	}
-	err = DB.Ping() //连接数据库
-	if err != nil {
-		fmt.Println("数据库连接失败")
-	}
-
-}
-
-// UserLogin /*登入账户*/
-func UserLogin(username string, password string) int {
-	rows, err := DB.Query("SELECT passWord FROM superoot_wyb where name=?", username) //通过账户名查询密码
-	if err != nil {
-		fmt.Println("查询失败")
-	}
-	var a string //查询到的密码
-	//遍历返回结果
-	for rows.Next() {
-		err = rows.Scan(&a)
-		if err != nil {
-			fmt.Println(err)
-		}
-	}
-	var b int
-	if a == password { //判断数据库密码 与前端输入的密码是否相同
-		b = 1
-	} else {
-		b = 0
-	}
-	fmt.Println(a)
-	return b
-}
-
-// UserRegister 用户注册
-func UserRegister(c *gin.Context, username string, password string) {
-	rows, err := DB.Query("SELECT  *  from superoot_wyb") //查询superoot内所有信息
-	if err != nil {
-		fmt.Println("查询失败") //处理错误机制
-	}
-	var u User                            //已知User为结构体
-	err = rows.Scan(&u.name, &u.password) //扫描name,passWord数据
-	if err != nil {
-		fmt.Println(err) //处理错误机制
-	}
-	fmt.Println(u.name)
-	if username != u.name { //判断数据库内的u.name是否与前端页面传入的username相匹配 若不匹配 则无此用户
-		results, err := DB.Exec("insert into superoot_wyb(name,passWord) values(?,?)", username, password) //执行插入sql语句
-		if err != nil {
-			fmt.Println("执行失败") //处理错误机制
-			return
-		} else {
-			rows, _ := results.RowsAffected() //输出执行的行数
-			if rows != 1 {
-				c.JSON(200, gin.H{
-					"success": false,
-				})
-			} else {
-				c.JSON(200, gin.H{
-					"success":  true,
-					"username": username,
-					"password": password,
-				})
-			}
-		}
-	}
-
-}
 
 //定义书籍结构体
 type books_wyb struct { // 结果集，参数名需大写
