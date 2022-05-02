@@ -45,6 +45,8 @@ func Run() {
 		easy_library.POST("/add_book", AddBook)       //POST>>>>添加书籍
 		easy_library.POST("/change_book", ChangeBook) //POST>>>>修改书籍
 		easy_library.POST("/query_book", QueryBook)   //POST>>>>查询
+		easy_library.POST("/borrow_book", BorrowBook) //POST>>>>借阅图书
+		easy_library.POST("/return_book", ReturnBook) //POST>>>>归还图书
 	}
 	err := engine.Run("127.0.0.1:8082") //启动端口127.0.0.1:8082
 	if err != nil {

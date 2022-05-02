@@ -19,5 +19,4 @@ func MustInit() {
 	if err != nil {
 		fmt.Println("数据库连接失败")
 	}
-
 }
