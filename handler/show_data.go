@@ -1,15 +1,16 @@
 package handler
 
 import (
-	"easy-library/common"
 	"easy-library/db"
-	"fmt"
+	"easy-library/logger"
 	"github.com/gin-gonic/gin"
+	"github.com/sirupsen/logrus"
 )
 
-func Showdata(c *gin.Context) {
-	a := db.Showdata() //将showdata()获取的值 赋值给a
-	//fmt.Println(a, m, d)
-	fmt.Println(a)
-	toHtml(c, common.ErrSuccess, a, nil) //将a 返回给html
+func ShowData(c *gin.Context) {
+	res, cusErr := db.ShowData() //将showdata()获取的值 赋值给a
+	logger.DebugOutput.WithFields(logrus.Fields{
+		"msg": "logHeader",
+	}).Info(res)
+	toHtml(c, cusErr, res, nil) //将a 返回给html
 }

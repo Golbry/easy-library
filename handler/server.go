@@ -39,16 +39,14 @@ func Run() {
 	}) //触发get请求 加载html文件
 	easy_library := engine.Group("easy_library") //创建 请求组
 	{
-		easy_library.POST("/login", Login)                //POST>>>>登入
-		easy_library.POST("/register", Register)          //POST>>>>注册
-		easy_library.POST("/show_data", Showdata)         //POST>>>>动态展示
-		easy_library.POST("/add_book", Addbook)           //POST>>>>添加书籍
-		easy_library.POST("/delete", Delect)              //POST>>>>删除书籍
-		easy_library.POST("/query", Querybook)            //POST>>>>查询
-		easy_library.POST("/change_name", changeBookname) //POST>>>>修改书籍名称
-		easy_library.POST("/change_time", changeBooktime) //POST>>>>修改书籍时间
+		easy_library.POST("/login", Login)            //POST>>>>登入
+		easy_library.POST("/register", Register)      //POST>>>>注册
+		easy_library.POST("/show_data", ShowData)     //POST>>>>动态展示
+		easy_library.POST("/add_book", AddBook)       //POST>>>>添加书籍
+		easy_library.POST("/change_book", ChangeBook) //POST>>>>修改书籍
+		easy_library.POST("/query_book", QueryBook)   //POST>>>>查询
 	}
-	err := engine.Run("127.0.0.1:8082") //启动端口127.0.0.1:8080
+	err := engine.Run("127.0.0.1:8082") //启动端口127.0.0.1:8082
 	if err != nil {
 		return
 	} //处理错误机制

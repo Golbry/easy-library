@@ -37,6 +37,6 @@ func UserRegister(username string, password string) *common.CusError {
 			}
 		}
 	} else {
-		return common.ErrExitedUserName
+		return common.ErrExistedUserName
 	}
 }
