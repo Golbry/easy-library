@@ -25,7 +25,7 @@ img{max-width:100%;}
 /*-- Index-Page-Styling --*/
 
 body {
-    background: #4b2294;
+    background: #0074CE;
     padding-top: 2em;
 }
 .w3l-main {
@@ -47,7 +47,7 @@ body {
     min-height: 500px;
     background: rgba(16, 16, 16, 0.73);
     box-sizing:	border-box;
-    border: 20px solid #839;
+    border: 20px solid #0074CE;
 }
 /*-- Slider range --*/
 .filter-price {
@@ -521,7 +521,7 @@ span a {
 }
 @media(max-width:568px){
     .w3l-left-side {
-        border: 15px solid #839;
+        border: 15px solid #0074CE;
     }
     footer{
         letter-spacing: 1px;
@@ -537,7 +537,7 @@ span a {
         letter-spacing: 1px;
     }
     .w3l-left-side{
-        border: 5px solid #839;
+        border: 5px solid #0074CE;
         min-height: 0px;
         flex-basis: 400px;
     }
@@ -555,7 +555,7 @@ span a {
         letter-spacing: 0px;
     }
     .w3l-left-side{
-        border: 5px solid #839;
+        border: 5px solid #0074CE;
         flex-basis: 350px;
     }
     .w3l-rigt-side {
@@ -597,7 +597,7 @@ span a {
         font-size: 25px;
     }
     .w3l-left-side{
-        border: 5px solid #839;
+        border: 5px solid #0074CE;
         flex-basis: 300px;
     }
     .w3l-rigt-side {
@@ -626,7 +626,7 @@ span a {
 
     @media(max-width:375px){
         .w3l-left-side{
-            border: 5px solid #839;
+            border: 5px solid #0074CE;
             min-height: 0px;
         }
         .w3l-rigt-side {
@@ -657,7 +657,7 @@ span a {
     }
     @media(max-width:320px) {
         .w3l-left-side {
-            border: 5px solid #839;
+            border: 5px solid #0074CE;
             min-height: 0px;
         }
 

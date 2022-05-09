@@ -20,8 +20,8 @@ type BookInfo struct { // 结果集，参数名需大写
 // Showdata 动态数据
 func ShowData() ([]BookInfo, *common.CusError) { //返回切片数据
 	logHeader := "[ShowData]"
-	books := make([]BookInfo, 0)                                                                                         //创建空的users切片
-	rows, err := DB.Query("SELECT book_id,book_name,author,press,book_left_sum,book_borrowed_sum FROM book_global_info") //执行查询语句 ,获取表中所有数据 并存入rows
+	books := make([]BookInfo, 0)                                                                                                        //创建空的users切片
+	rows, err := DB.Query("SELECT book_id,book_name,author,press,book_left_sum,book_borrowed_sum FROM book_global_info WHERE status=0") //执行查询语句 ,获取表中所有数据 并存入rows
 	if err != nil {
 		return nil, common.ErrSystem
 	} //处理错误机制

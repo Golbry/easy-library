@@ -1,4 +1,4 @@
-<html><head>
+<html style="background-color: #0074CE"><head>
     <title>欢迎来到DUT图书馆</title>
     <!-- metatags-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,22 +20,22 @@
     <div class="w3l-left-side">
         <div class="flexslider">
             <div class="flex-viewport" style="overflow: hidden; position: relative;"><ul class="slides" style="width: 1400%; transition-duration: 0.6s; transform: translate3d(-920px, 0px, 0px);"><li class="clone" style="width: 460px; float: left; display: block;">
-                <img src="../static/image/g1.jpg" alt="image">
+                <img src="../static/image/library.png" alt="image">
             </li>
                 <li style="width: 460px; float: left; display: block;" class="">
-                    <img src="../static/image/g5.jpg" alt="image">
+                    <img src="../static/image/library.png" alt="image">
                 </li>
                 <li style="width: 460px; float: left; display: block;" class="flex-active-slide">
-                    <img src="../static/image/g2.jpg" alt="image">
+                    <img src="../static/image/library.png" alt="image">
                 </li>
                 <li style="width: 460px; float: left; display: block;">
-                    <img src="../static/image/g3.jpg" alt="image">
+                    <img src="../static/image/library.png" alt="image">
                 </li>
                 <li style="width: 460px; float: left; display: block;">
-                    <img src="../static/image/g4.jpg" alt="image">
+                    <img src="../static/image/library.png" alt="image">
                 </li>
                 <li style="width: 460px; float: left; display: block;">
-                    <img src="../static/image/g1.jpg" alt="image">
+                    <img src="../static/image/library.png" alt="image">
                 </li>
                 <li style="width: 460px; float: left; display: block;" class="clone">
                     <img src="../static/image/g5.jpg" alt="image">
@@ -151,6 +151,7 @@
                       alert("密码错误")
                   }else {
                       sessionStorage.setItem('user_level',data.exception.level)
+                      sessionStorage.setItem('user_name',username)
                       window.location.href="http://localhost:8082/back_stage" //登入成功就切换到主页面
                   }
               },

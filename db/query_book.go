@@ -8,8 +8,8 @@ import (
 
 func QueryBook(bookName string) ([]BookInfo, *common.CusError) { //通过id查询  返回 books切片  通过server内的Querybook传入id
 	logHeader := "[QueryBook]"
-	books := make([]BookInfo, 0)                                                                                                                              //创建空的users切片
-	rows, err := DB.Query("SELECT book_id,book_name,author,press,book_left_sum,book_borrowed_sum FROM book_global_info WHERE book_name LIKE ?", bookName+"%") //执行查询语句 ,获取表中所有数据 并存入rows
+	books := make([]BookInfo, 0)                                                                                                                                           //创建空的users切片
+	rows, err := DB.Query("SELECT book_id,book_name,author,press,book_left_sum,book_borrowed_sum FROM book_global_info WHERE book_name LIKE ? AND status=0", bookName+"%") //执行查询语句 ,获取表中所有数据 并存入rows
 	if err != nil {
 		return nil, common.ErrSystem
 	} //处理错误机制

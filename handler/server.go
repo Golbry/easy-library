@@ -37,6 +37,11 @@ func Run() {
 		//加载模板是加载的路径，替换的是文件中的某个变量
 		c.HTML(200, "add_books.html", gin.H{"title": "添加图书"})
 	}) //触发get请求 加载html文件
+	engine.GET("/borrow_books", func(c *gin.Context) {
+		//根据文件名渲染
+		//加载模板是加载的路径，替换的是文件中的某个变量
+		c.HTML(200, "borrow_books.html", gin.H{"title": "图书借阅管理"})
+	}) //触发get请求 加载html文件
 	easy_library := engine.Group("easy_library") //创建 请求组
 	{
 		easy_library.POST("/login", Login)            //POST>>>>登入

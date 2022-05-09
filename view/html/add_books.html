@@ -13,7 +13,7 @@
 <body>
   <div class="header bg-main">
     <div class="logo margin-big-left fadein-top">
-        <h1><img src="../static/image/y.jpg" class="radius-circle rotate-hover" height="50" alt="">图书管理系统</h1>
+        <h1><img src="../static/image/head.png" class="radius-circle rotate-hover" height="50" alt="">图书管理系统</h1>
     </div>
     <div class="head-l">
         <a class="button button-little bg-green" target="_blank">
@@ -44,7 +44,7 @@
   </div>
 </div>
 </div>
-    <div class="panel admin-panel margin-top" style="position: absolute;top: 97px;left: 177px;">
+    <div class="panel admin-panel margin-top" style="position: absolute;top: 100px;left: 177px;" >
         <div class="panel-head" id="add1"><strong><span class="icon-pencil-square-o"></span>添加书籍</strong></div>
         <div class="body-content">
 <!--            <div class="form-group">-->
@@ -56,7 +56,7 @@
 <!--                <div class="tips" title=""></div>-->
 <!--              </div>-->
 <!--            </div>-->
-            <div class="form-group">
+            <div class="form-group" style="margin-left: 30px">
               <div class="label">
                 <label>书籍名称: </label>
               </div>
@@ -65,14 +65,32 @@
                 <input type="text" class="input" id="bookName">
               </div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="margin-left: 30px">
               <div class="label">
  <!--    通过GoodShelfStatus id 获取val() -->
-                <label>书籍入馆时间: </label>
+                <label>作者: </label>
               </div>
               <div class="field">
                 <input type="text" class="input"  id="GoodShelfStatus"> 
               </div>
+            </div>
+            <div class="form-group" style="margin-left: 30px">
+                <div class="label">
+                    <!--    通过GoodShelfStatus id 获取val() -->
+                    <label>出版社: </label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input"  id="GoodShelfStatus">
+                </div>
+            </div>
+            <div class="form-group" style="margin-left: 30px">
+                <div class="label">
+                    <!--    通过GoodShelfStatus id 获取val() -->
+                    <label>入馆数量: </label>
+                </div>
+                <div class="field">
+                    <input type="text" class="input"  id="GoodShelfStatus">
+                </div>
             </div>
             <div class="form-group">
               <div class="label">
@@ -80,7 +98,7 @@
               </div>
               <div class="field">
 <!--   通过onclick点击事件 触发函数add()               -->
-                <button class="button bg-main icon-check-square-o"   onclick="add()"> 添加</button>
+                <button class="button bg-main icon-check-square-o"  style="margin-left: 30px" onclick="add()"> 添加</button>
               </div>
             </div>
 

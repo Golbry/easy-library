@@ -3,7 +3,9 @@ package db
 import (
 	"easy-library/common"
 	"easy-library/id_generator"
+	"easy-library/logger"
 	"fmt"
+	"github.com/sirupsen/logrus"
 )
 
 //修改书籍时间信息
@@ -12,6 +14,9 @@ func ChangeBook(bookId string, bookName string, author string, press string, boo
 	bookIdChanged := id_generator.GenerateId(preStr)
 	_, err := DB.Exec("UPDATE book_global_info SET book_id=?,book_name=?,author=?,press=?,book_left_sum=?,status=? where book_id =?", bookIdChanged, bookName, author, press, bookLeftSum, status, bookId) //通过书籍id 修改 书籍时间 执行sql语句 将值传给results
 	if err != nil {
+		logger.DebugOutput.WithFields(logrus.Fields{
+			"msg": "logHeader",
+		}).Error(bookId, status, err)
 		return 0, common.ErrUpdate
 	} else {
 		return 1, common.ErrSuccess
